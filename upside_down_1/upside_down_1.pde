@@ -1,6 +1,6 @@
 PImage bg;
 
-int quantity = 300;
+int quantity = 3000;
 float[] xPosition = new float[quantity];
 float[] yPosition = new float[quantity];
 
@@ -29,15 +29,17 @@ void setup() {
 
 void draw() {
   background(bg);
+  filter(INVERT);
+  filter(POSTERIZE, 4);
   //background(0);
   
   for (int i = 0; i < xPosition.length; i++) {
     ellipse(xPosition[i], yPosition[i], flakeSize[i], flakeSize[i]);
     
     if (direction[i] == 0) {
-      xPosition[i] += map(flakeSize[i], minFlakeSize, maxFlakeSize, .1, .5);      
+      xPosition[i] += map(flakeSize[i], minFlakeSize, maxFlakeSize, .1, 5);      
     } else {
-      xPosition[i] -= map(flakeSize[i], minFlakeSize, maxFlakeSize, .1, .5);
+      xPosition[i] -= map(flakeSize[i], minFlakeSize, maxFlakeSize, .1, 5);
     }
     
     yPosition[i] += flakeSize[i] + direction[i];
