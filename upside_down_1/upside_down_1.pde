@@ -11,8 +11,10 @@ int maxFlakeSize = 5;
 
 void setup() {
   bg = loadImage("Irvine_City_Hall.jpg");
+  bg.resize(displayWidth, displayHeight);
   
-  size(1200, 747);
+  //size(1200, 747);
+  fullScreen();
   frameRate(30);
   noStroke();
   smooth();
@@ -27,6 +29,7 @@ void setup() {
 
 void draw() {
   background(bg);
+  //background(0);
   
   for (int i = 0; i < xPosition.length; i++) {
     ellipse(xPosition[i], yPosition[i], flakeSize[i], flakeSize[i]);
