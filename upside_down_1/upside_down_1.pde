@@ -65,7 +65,7 @@ void draw() {
   //LoadImage();
   //background(0);
   
-  float newTime = millis()/5000;
+  float newTime = millis()/(1000 * 60 * 5); // Change images every 5 minutes
   if (currTime != newTime) {
     currentRandNum2 = random(50);
     currTime = newTime;
