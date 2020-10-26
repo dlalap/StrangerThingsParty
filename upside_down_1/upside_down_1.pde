@@ -1,7 +1,8 @@
-import processing.video.*; 
+// import processing.video.*; 
+import processing.opengl.*;
 
 PImage bg;
-Movie movie;
+// Movie movie;
 
 int quantity = 100;
 float[] xPosition = new float[quantity];
@@ -9,8 +10,8 @@ float[] yPosition = new float[quantity];
 
 int[] flakeSize = new int[quantity];
 int[] direction = new int[quantity];
-int minFlakeSize = 5;
-int maxFlakeSize = 10;
+int minFlakeSize = 3;
+int maxFlakeSize = 7;
 
 void setup() {
   //movie = new Movie(this, "clouds.mp4");
@@ -20,9 +21,10 @@ void setup() {
   bg.resize(displayWidth, displayHeight);
   
   //size(1200, 747);
-  fullScreen();
+  fullScreen(P2D, SPAN);
   frameRate(30);
   noStroke();
+  noCursor();
   smooth();
   
   for (int i = 0; i < quantity; i++) {
@@ -33,9 +35,9 @@ void setup() {
   }
 }
 
-void movieEvent(Movie movie) {
-  movie.read();
-}
+// void movieEvent(Movie movie) {
+//   movie.read();
+// }
 
 void draw() {
   //background(bg);
@@ -44,7 +46,8 @@ void draw() {
   //filter(INVERT);
   //filter(POSTERIZE, 4);
   //background(0);
-  
+  //text(frameRate,20,20);
+
   for (int i = 0; i < xPosition.length; i++) {
     fill(100, 100, 100, 120);
     ellipse(xPosition[i], yPosition[i], flakeSize[i], flakeSize[i]);
@@ -55,7 +58,7 @@ void draw() {
     } 
     else {
       //xPosition[i] -= map(flakeSize[i], minFlakeSize, maxFlakeSize, .1, 5);
-      xPosition[i] -= map(flakeSize[i], minFlakeSize, maxFlakeSize, .1, .5);
+      xPosition[i] -= map(flakeSize[i], minFlakeSize, maxFlakeSize, 0.1, 0.5);
     }
     
     yPosition[i] += (flakeSize[i] + direction[i]) / 10;
