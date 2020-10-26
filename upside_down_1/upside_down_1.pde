@@ -12,16 +12,36 @@ int[] flakeSize = new int[quantity];
 int[] direction = new int[quantity];
 int minFlakeSize = 3;
 int maxFlakeSize = 7;
+float currTime = -1;
+float currentRandNum = 0;
+float currentRandNum2 = 0;
+String[] images;
+String[] test;
+int testpointer;
 
 void setup() {
   //movie = new Movie(this, "clouds.mp4");
   //movie.loop();
   
-  bg = loadImage("upside_down_irvine.png");
+  images = new String[]{
+    "upside_down_irvine.png",
+    "upside_down_2.png",
+    "upside_down_3.png"
+  };
+  
+  test = new String[] {
+    "a",
+    "b",
+    "c"
+  };
+  
+  testpointer = -1;
+  
+  bg = loadImage(images[0]);
   bg.resize(displayWidth, displayHeight);
   
   //size(1200, 747);
-  fullScreen(P2D, SPAN);
+  fullScreen(P2D);
   frameRate(30);
   noStroke();
   noCursor();
@@ -42,12 +62,28 @@ void setup() {
 void draw() {
   //background(bg);
   //image(movie, 0, 0, displayWidth, displayHeight);
-  image(bg, 0, 0);
-  //filter(INVERT);
-  //filter(POSTERIZE, 4);
+  //LoadImage();
   //background(0);
-  //text(frameRate,20,20);
-
+  
+  float newTime = millis()/5000;
+  if (currTime != newTime) {
+    currentRandNum2 = random(50);
+    currTime = newTime;
+    testpointer = testpointer + 1;
+    if (testpointer > 2) {
+      testpointer = 0;
+    }
+  }
+  //if (millis()/1000.0 % 1 < 10) {
+  //  currentRandNum2 = random(50);
+  //}
+  text(currTime, 10, 60);
+  text(currentRandNum2, 10, 90);
+  text(test[testpointer], 10, 120);
+  bg = loadImage(images[testpointer]);
+  bg.resize(displayWidth, displayHeight);
+  background(bg);
+  
   for (int i = 0; i < xPosition.length; i++) {
     fill(100, 100, 100, 120);
     ellipse(xPosition[i], yPosition[i], flakeSize[i], flakeSize[i]);
@@ -75,4 +111,14 @@ void draw() {
       //}
     }
   }
+}
+
+void LoadImage(PImage img) {
+  image(img, 0.0, 0.0);
+  //filter(INVERT);
+  //filter(POSTERIZE, 4);
+  //background(0);
+  //text(frameRate,20,20);
+
+  
 }
