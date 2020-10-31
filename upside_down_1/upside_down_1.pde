@@ -25,8 +25,9 @@ void setup() {
   
   images = new String[]{
     "upside_down_irvine.png",
-    "upside_down_2.png",
-    "upside_down_3.png"
+    "upside_down_irvinespectrum_transparent.png",
+    "upside_down_greatpark1_transparent.png",
+    "upside_down_uci.png"
   };
   
   test = new String[] {
@@ -65,12 +66,12 @@ void draw() {
   //LoadImage();
   //background(0);
   
-  float newTime = millis()/(1000 * 60 * 5); // Change images every 5 minutes
+  float newTime = millis()/(1000 *  5); // Change images every 5 minutes
   if (currTime != newTime) {
     currentRandNum2 = random(50);
     currTime = newTime;
     testpointer = testpointer + 1;
-    if (testpointer > 2) {
+    if (testpointer > 3) {
       testpointer = 0;
     }
   }
@@ -79,7 +80,7 @@ void draw() {
   //}
   text(currTime, 10, 60);
   text(currentRandNum2, 10, 90);
-  text(test[testpointer], 10, 120);
+  //text(test[testpointer], 10, 120);
   bg = loadImage(images[testpointer]);
   bg.resize(displayWidth, displayHeight);
   background(bg);
